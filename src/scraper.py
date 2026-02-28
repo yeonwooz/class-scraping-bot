@@ -58,7 +58,18 @@ def _do_scrape() -> list[dict]:
 
         print(f"[Scraper] 페이지 로딩: {config.TARGET_URL}")
         page.goto(config.TARGET_URL, timeout=config.BROWSER_TIMEOUT_MS)
-        page.wait_for_load_state("networkidle", timeout=config.BROWSER_TIMEOUT_MS)
+
+        # 수업 카드가 실제로 렌더링될 때까지 대기
+        try:
+            page.wait_for_selector(
+                ".shop-item._shop_item",
+                timeout=config.BROWSER_TIMEOUT_MS,
+            )
+            print("[Scraper] 수업 카드 로딩 확인")
+        except PlaywrightTimeout:
+            print("[Scraper] 경고: 수업 카드 로딩 타임아웃, 현재 상태로 진행")
+
+        # 추가 렌더링 대기 (이미지, 가격 등)
         page.wait_for_timeout(config.WAIT_AFTER_LOAD_MS)
 
         html = page.content()
