@@ -1,0 +1,10 @@
+[project]
+name = "class-scraping-bot"
+version = "0.1.0"
+description = "상상마당 아카데미 글쓰기 수업 모집 알림봇"
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.12.0",
+    "playwright>=1.49.0",
+    "python-dotenv>=1.0.0",
+]
