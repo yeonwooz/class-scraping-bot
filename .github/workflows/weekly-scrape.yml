@@ -1,4 +1,4 @@
-name: 수업 스크래핑
+name: Weekly Class Scrape
 
 on:
   schedule:
