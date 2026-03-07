@@ -58,21 +58,17 @@ def run():
     except Exception as e:
         print(f"[Error] 스크래핑 실패: {e}")
         duration_sec = time.time() - start_time
-        try:
-            send_email(
-                subject=f"[수업알림] {today} 스크래핑 실패",
-                courses=[],
-                error_message=str(e),
-            )
-            _log_run(today, 0, True, duration_sec, note=f"scrape-error: {e}")
-        except Exception as mail_err:
-            print(f"[Error] 에러 알림 이메일도 실패: {mail_err}")
-            _log_run(today, 0, False, duration_sec,
-                     note=f"scrape-error+mail-error: {e}")
+        _log_run(today, 0, False, duration_sec, note=f"scrape-error: {e}")
         return
 
     recruiting = [c for c in courses if c.get("is_recruiting")]
     print(f"\n총 {len(courses)}개 수업 발견, 모집 중 {len(recruiting)}개\n")
+
+    if not courses:
+        print("[Skip] 수업을 찾지 못해 이메일 발송을 건너뜁니다.")
+        duration_sec = time.time() - start_time
+        _log_run(today, 0, False, duration_sec, note="no-courses-skip-email")
+        return
 
     # 2. 이메일 발송
     print("--- 2단계: 이메일 발송 ---")
