@@ -4,3 +4,7 @@ date,courses_found,email_sent,duration_sec,source,note
 2026-02-28,17,True,11.3,bot,
 2026-03-07,0,True,38.6,bot,
 2026-03-07,17,True,15.0,bot,
+2026-03-14,0,False,216.1,bot,"scrape-error: 4회 시도 후 스크래핑 실패: Page.wait_for_selector: Timeout 45000ms exceeded.
+Call log:
+  - waiting for locator("".shop-item._shop_item"") to be visible
+"
