@@ -11,3 +11,7 @@ Call log:
 2026-03-21,17,True,12.4,bot,
 2026-03-28,17,True,13.6,bot,
 2026-04-04,17,True,12.1,bot,
+2026-04-11,0,False,216.5,bot,"scrape-error: 4회 시도 후 스크래핑 실패: Page.wait_for_selector: Timeout 45000ms exceeded.
+Call log:
+  - waiting for locator("".shop-item._shop_item"") to be visible
+"
